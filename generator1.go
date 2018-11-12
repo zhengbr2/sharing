@@ -5,19 +5,18 @@ import (
 	"time"
 )
 
+func main() {
 
-func main(){
-
-	ci:=make(chan int)
+	ci := make(chan int)
 	rand.Seed(time.Now().UnixNano())
 
-	go func(){
+	go func() {
 		for {
 			ci <- rand.Intn(100)
 		}
 	}()
 
-	for i:=0;i<10;i++ {
-		println( i, ":", <-ci)
+	for i := 0; i < 10; i++ {
+		println(i, ":", <-ci)
 	}
 }

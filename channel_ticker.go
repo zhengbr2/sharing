@@ -1,17 +1,15 @@
 package main
 
 import (
-		"time"
 	"log"
+	"time"
 )
 
+func main() {
 
-func main(){
+	ticker := time.Tick(time.Second * 1)
 
-
-	ticker:=time.Tick(time.Second * 1)
-
-	for i:=0;i<4;i++ {
-		log.Println( i, ":", <-ticker)
+	for i := 0; i < 4; i++ {
+		log.Println(i, ":", <-ticker)
 	}
 }
