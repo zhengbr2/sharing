@@ -47,7 +47,6 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(ThreadCount)
 	for r := 0; r < ThreadCount; r++ {
-
 		conn, err := rpc.Dial("tcp", "127.0.0.1:8095")
 		if err != nil {
 			log.Fatalln("dailing error: ", err)
@@ -57,13 +56,11 @@ func main() {
 				req := ArithRequest{i / 2, i}
 				var res ArithResponse
 
-				err = conn.Call("Arith.Multiply", req, &res) // 乘法运算
+				err = conn.Call("Arith.Multiply", req, &res)
 				if err != nil {
 					log.Fatalln("arith error: ", err)
 				}
-				//time.Sleep( time.Millisecond * time.Duration(rd.Intn(1000)));
-				//
-				//fmt.Printf("%d * %d = %d\n", req.A, req.B, res.Pro)
+
 			}
 			wg.Done()
 		}()

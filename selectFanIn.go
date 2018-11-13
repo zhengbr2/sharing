@@ -7,14 +7,11 @@ import (
 )
 
 func doTask2(job string)  <- chan string{
-
 	result:=make( chan string )
 	go func () { time.Sleep(time.Second * time.Duration( rand.Intn(5))); result <- job + " is done!"}()
 	return result
 }
-
 func fanIn(input1 , input2 <-chan string) <-chan string {
-
 	c := make(chan string)
 	go func() {
 		for {
