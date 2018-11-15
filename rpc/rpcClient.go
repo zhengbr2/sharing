@@ -8,26 +8,14 @@ import (
 	"os"
 	"strconv"
 	"time"
-
 	"math/rand"
+	"sharing/rpc/lib"
 )
 
-// 算数运算请求结构体
-type ArithRequest struct {
-	A int
-	B int
-}
-
-// 算数运算响应结构体
-type ArithResponse struct {
-	Pro int // 乘积
-	Quo int // 商
-	Rem int // 余数
-}
 
 var (
-	ThreadCount = 5000
-	Repeat      = 100
+	ThreadCount = 500
+	Repeat      = 1000
 )
 
 func init() {
@@ -53,8 +41,8 @@ func main() {
 		}
 		go func() {
 			for i := 0; i < Repeat; i++ {
-				req := ArithRequest{i / 2, i}
-				var res ArithResponse
+				req := lib.ArithRequest{i / 2, i}
+				var res lib.ArithResponse
 
 				err = conn.Call("Arith.Multiply", req, &res)
 				if err != nil {
